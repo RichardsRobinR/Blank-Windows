@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="Blank.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Blank"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    Title="Blank">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+
+
+
+    
+
+
+
+    <Grid RowDefinitions="Auto,Auto,*">
+
+
+        <Grid.Resources>
+            <MenuFlyout x:Key="WebViewContextMenu">
+                <MenuFlyoutItem x:Name="CopyMenuItem" Text="Copy">
+                    <MenuFlyoutItem.Icon>
+                        <FontIcon Glyph="&#xE8C8;"/>
+                    </MenuFlyoutItem.Icon>
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="C" Modifiers="Control"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem x:Name="PasteMenuItem" Text="Paste">
+                    <MenuFlyoutItem.Icon>
+                        <FontIcon Glyph="&#xE77F;"/>
+                    </MenuFlyoutItem.Icon>
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="V" Modifiers="Control"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutSeparator/>
+                <MenuFlyoutItem x:Name="SaveMenuItem" Text="Save Selection">
+                    <MenuFlyoutItem.Icon>
+                        <FontIcon Glyph="&#xE74E;"/>
+                    </MenuFlyoutItem.Icon>
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="S" Modifiers="Control"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+            </MenuFlyout>
+        </Grid.Resources>
+
+        <Border Grid.Row="0" x:Name="AppTitleBar" Grid.Column="1" VerticalAlignment="Top">
+            <TextBlock x:Name="AppTitle" Text="Blank" VerticalAlignment="Top" Margin="16,8,0,0" />
+        </Border>
+
+
+        <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal" >
+            <MenuBar >
+                <MenuBarItem Title="File">
+                    <MenuFlyoutItem Text="New"/>
+                    <MenuFlyoutItem Text="Open..."/>
+                    <MenuFlyoutItem Text="Save" Click="Save_MenuFlyoutItem_Click"/>
+                    <MenuFlyoutItem Text="Exit"/>
+                </MenuBarItem>
+
+                <MenuBarItem Title="Edit">
+                    <MenuFlyoutItem Text="Undo"/>
+                    <MenuFlyoutItem Text="Cut"/>
+                    <MenuFlyoutItem Text="Copy"/>
+                    <MenuFlyoutItem Text="Paste"/>
+                </MenuBarItem>
+
+                <MenuBarItem Title="Help">
+                    <MenuFlyoutItem Text="About"/>
+                </MenuBarItem>
+            </MenuBar>
+
+        </StackPanel>
+
+        <controls:WebView2 Grid.Row="2"
+            x:Name="MyWebView"
+            HorizontalAlignment="Stretch" 
+            VerticalAlignment="Stretch" 
+                           DefaultBackgroundColor="#121212" Visibility="Collapsed"  ContextFlyout="{StaticResource WebViewContextMenu}" 
+                           />
+    </Grid>
+</Window>
